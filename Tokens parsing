@@ -1,0 +1,48 @@
+download (nltk)
+import nltk
+
+#Se crea una texto de entrada a nuestra cadena NLP
+Text = "I want one pizza with cheese and olives, and two lasagnes. I would like to pay separated"
+print ("\n\n1. Texto:", text
+
+#Dividimos el texto en frases
+sentences = nltk.tokenize.sent_tokenize(text)
+print ("\n\n2. Frases:", text)
+
+#Tokenizción: dividimos el texto en tokens
+tokens = nltk.word_tokenize(text)
+print ("\n\n3. Tokens:", tokens)
+
+#Análisis morfológico: A continuación se asignará una etiqueta morfológica para cada uno de los tokens.
+tagged = nltk.pos_tag(tokens)
+print ("\n\n4. Análisis morfológico:", tagged)
+
+#Stemming: Obtenemos la raiz (en inglés "stem) de cada token
+from nltk.stem import PorterStemmer
+stemmer = PorterStemmer()
+print ("\n\n5. Stems: ")
+for tok in tokens:
+    print (stemmer.stem(tok.lower())
+    
+#Lemtización: Obtenemos el lema de cada token
+from nltk.stem import WordNetLemmatizer
+lemmatizer = WordNetLemmatizer()    #El lematizador solo reconoce 4 etiquetas POS: Adjetivo, adverbio, nombre y verbo
+from nltk.corpus import wordnet
+wnTags = {'N': wordnet.NOUN, 'J'= wordnet.ADJ, 'V'=wordnet.VERB, 'R'=wordnet.ADV}
+print ("\n\n6. Lemas: ")
+for (tok,tag) in tagged:
+    if tok == '\m':
+        tok = 'am'
+    if tok == '\'s':    
+        tok = 'is':
+    if tok == 'n\'t:
+        tok = 'not'
+    tag = tag [:1]
+    lemma = lemmatizer.lemmatize(tok.lower(), wnTags.get(tag, wordnet.NOUN)
+    
+#Generamos un parser sintáctico capaz de reconocer la gramática
+parser = nltk.ChartParser(grammar)
+print ('Analisis sintactico:\n')
+for tree in parser.parse(groucho):
+    print(tree,'\n')
+    tree.draw()
