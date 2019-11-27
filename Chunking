@@ -1,0 +1,27 @@
+NOUN PHRASE CHUNKING
+Once we get the part of speech tags, we can define a chunk grammar, consisting of rules that indicate how sentences should be chunked.
+sentence.tagged = [("the", "DT"), ("little","JJ"), ("yellow","JJ"),("dog","NN"), ("barked","VBD"), ("at","IN"),("the","DT"), ("cat","NN")
+
+There are different ways to define the chunk grammar
+grammar = "NP: {<DT>?<JJ>*<NN>}"
+
+cp = nltk.RegexpParser(grammar)
+result = cp.parse(sentence.tagged)
+print (result)
+result.draw()
+
+CHUNKING WITH REGULAR EXPRESSIONS
+grammar = r'''
+  NP: {<DT|PP\$>?<JJ>*<NN>}     # chunk determiner/possesive, adjectives and noun 
+      {<NNP>+}                  # chunk sequences of proper nouns
+      '''
+cp = nltk.RegexpParser(grammar)
+sentence.tagged = [("Rapuznel", "NNP"), ("let", "VBD"), ("down","RP"), ("her","PP$"), ("long","JJ"), ("golden","JJ"), ("hair","NN")]
+print (cp.parse(sentence))
+
+for sent in sentence.tagged():
+  tree = cp.parse(sent)
+  for subtree in tree.subtrees():
+    if subtree.label() == "comida": print (subtree)
+    if subtree.label() == "cantidad": print (subtree)
+    
