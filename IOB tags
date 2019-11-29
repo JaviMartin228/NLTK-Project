@@ -1,0 +1,29 @@
+The IOB format (short for inside, outside, beginning) is a common tagging format for tagging tokens in a chunking task in computational linguistics (ex. named-entity recognition).
+SE GENERA UN TEXTO QUE POSTERIORMENTE SERÁ DIVIDIDO EN FRASES Y PALABRAS PARA SU POSTERIOR ANÁLISIS
+Text= "America was discovered by Cristobal Colon in 1492"
+def preprocess(Text):
+  sent = nltk.sent_tokenize(Text)
+  tokens = nltk.word_tokenize(sent)
+  tagged_sent = nltk.pos_tag(tokens)
+  print (tagged_sent)
+  
+A CONTINUACIÓN SE ESTABLECE UNA REGLA GRAMATICAL PARA REALIZAR LOS CHUNKS  
+grammar = r'''
+        NP:
+          {<.*>+}     # Chunk everything
+          }<VBD/IN>{  # Chink sequences of VBD and IN
+          '''
+for frase in Text:
+  cp = nltk.RegexpParser (grammar)
+  sent = preprocess(Text):
+  cs = cp.parse(sent)
+  cs.draw()
+  
+from nltk.chunk import colltags2tree, tree2conlltags, ne_chunk
+from pprint import pprint
+for frase in Text:
+  cp = nltk.RegexpParser(grammar)
+  sent = preprocess(frase)
+  cs = cp.parse(sent)
+  iob_tagged = tree2conlltags(cs)
+  pprint (iob_tagged)
