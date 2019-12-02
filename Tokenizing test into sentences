@@ -26,3 +26,7 @@ in order to save space in their index
 >>> words = ["Can't", "is", "a", "contraction")
 >>> [word for word in words if word not in english_stops]
 ["Can't", "contraction"]
+#You can see the complete list of languages using the fileids method as follows:
+>>> stopwords.fileids()
+
+
