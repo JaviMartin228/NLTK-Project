@@ -1,0 +1,28 @@
+#Stemming is a technique to remove affixes from a word, ending up with the stem. One of the most common stemming algorithms is the Porter stemming algorithm.
+>>> from nltk.stem import PorterStemmer
+>>> stemmer = PorterStemmer()
+>>> stemmer.stem('cooking')
+'cook'
+>>> stemmer.stem('cookery')
+'cookeri'
+#The PorterStemmer class knows a number of regular word forms and suffixes and uses this knowledge to transform your input word to a final stem through a series of steps.
+
+#LEMMATIZING WORDS WITH WORDNET
+#Lemmatization is very similar to stemming, but is more akin to synonym replacement
+>>> from nltk.stem import WordNetLemmatizer
+>>> lemmatizer = WordNetLemmatizer()
+>>> lemmatizer.lemmatize ('cooking')
+'cooking'
+>>> lemmatizer.lemmatize('cooking', pos='v')
+'cook'
+lemmatizer.lemmatize('cookbooks')
+'cookbook'
+
+#REPLACEMENT BEFORE TOKENIZATION
+>>> from nltk.tokenize import word_tokenize
+>>> from replacers import RegexpReplacer
+>>> replacer = RegexpReplacer()
+>>> word_tokenize("can't is a contraction")
+['ca', "n't", 'is', 'a', 'contraction']
+>>> word_tokenize (replacer.replace("can't" is a contraction")
+['can', 'not', 'is, 'a', 'contraction']
