@@ -1,0 +1,28 @@
+#We can start creating by creating a paragraph of text
+paragraph = "Hello world. It´s a good to see you. Thanks for buying this book
+
+#Split the paragrapg into sentences
+from nltk.tokenize import sent_tokenize
+sentences = sent_tokenize(paragraph)
+
+#Tokenizing sentences into words
+from nltk.tokenize import word_tokenize
+tokens = word_tokenize(sentences)
+
+#WordPunctTokenizer, another alternative word tokenizer. It splits all punctuation into separates tokens:
+from nltk.tokenize import WordPunctTokenizer
+tokenizer = WordPunctTokenizer()
+tokenizer.tokenize("Can´t is a contraction.")
+
+#Tokenizing sentences using regular expressions
+from nltk.tokenize import RegexpTokenizer
+tokenizer = RegexpTokenizer(" [\w']+")
+tokenizer.tokenize("Can´t is a contraction.")
+
+#Filtering stopwords in a tokenized sentence. Most search engines will filter out stopwords from queries and documents
+in order to save space in their index
+>>> from nltk.corpus import stopwords
+>>> english_stops = set (stopwords.words('english'))
+>>> words = ["Can't", "is", "a", "contraction")
+>>> [word for word in words if word not in english_stops]
+["Can't", "contraction"]
